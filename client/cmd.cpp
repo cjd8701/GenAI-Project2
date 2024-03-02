@@ -55,3 +55,11 @@ std::string execCommand(const char* cmd) {
 
     return result;
 }
+
+// int main() {
+//     // Replace "cmd /c dir" with your command
+//     std::string output = execCommand("cmd /c ipconfig");
+//     std::cout << "Command Output:\n" << output;
+
+//     return 0;
+// }

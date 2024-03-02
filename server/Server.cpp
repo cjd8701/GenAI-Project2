@@ -89,8 +89,8 @@ void listenForClients(SOCKET ListenSocket) {
 
     std::cout << "Client connected. Enter commands to send:" << std::endl;
     std::string cmd;
-    char recvbuf[1024];
-    int recvbuflen = 1024;
+    char recvbuf[2048];
+    int recvbuflen = 2048;
 
     while (true) {
         std::getline(std::cin, cmd);
