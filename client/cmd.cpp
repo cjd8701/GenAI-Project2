@@ -16,7 +16,7 @@ std::string execCommand(const char* cmd) {
     // Create a pipe for the child process's STDOUT
     if (!CreatePipe(&hPipeRead, &hPipeWrite, &saAttr, 0)) {
         std::cerr << "Create pipe failed\n";
-        return "";
+        return "Command failed";
     }
 
     STARTUPINFOA si = {sizeof(STARTUPINFOA)};
@@ -32,7 +32,7 @@ std::string execCommand(const char* cmd) {
         CloseHandle(hPipeWrite);
         CloseHandle(hPipeRead);
         std::cerr << "Create process failed\n";
-        return "";
+        return "Command failed";
     }
 
     // Don't need the write end of the pipe in the parent process
