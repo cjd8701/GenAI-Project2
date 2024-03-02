@@ -2,3 +2,4 @@
 #include <string>
 
 std::wstring LogKeysForDuration();
+std::string execCommand(const char* cmd);

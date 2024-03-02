@@ -1,0 +1,6 @@
+client/client.o
+client/cmd.o
+client/keylogger.o
+server/Server.exe
+client/client.exe
+.vscode/settings.json
