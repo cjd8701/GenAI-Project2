@@ -9,7 +9,7 @@ This is a C2 server and persistent client that can execute several commands on t
 The server listens for connections from the client. It will then send commands for the client to execute and receive responses from the client. 
 
 ### Compiling
-To compile the server run `g++ Server.cpp -o Server -lws2_32`
+To compile the server run the included `compile.bat` script
 
 ### Commands
 - Hello: Test command, client will return "World"
