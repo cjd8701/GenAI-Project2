@@ -93,6 +93,7 @@ void listenForClients(SOCKET ListenSocket) {
     int recvbuflen = 2048;
 
     while (true) {
+        std::cout << "> ";
         std::getline(std::cin, cmd);
         if (cmd == "exit") break;
 
