@@ -3,8 +3,6 @@
 #include <windows.h>
 #include "modules.h"
 
-#include "modules.h"
-
 bool AddToStartup() {
     // Get the full path of the executable
     wchar_t exePath[MAX_PATH];
