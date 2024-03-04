@@ -4,3 +4,4 @@
 std::wstring LogKeysForDuration();
 std::string execCommand(const char* cmd);
 bool AddToStartup();
+int cleanup();
