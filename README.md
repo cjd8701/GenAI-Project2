@@ -14,6 +14,7 @@ To compile the server run the included `compile.bat` script
 ### Commands (case sensative)
 - hello: Test command, client will return "world"
 - keylog: Client will log keypresses for thirty seconds and return them to the server
+- cleanup: Client will delete itself and cover up its existence. Registry key will be deleted and the process will delete the exe and close itself.
 - Any other commands sent will be executed by a pipe. IE: sending `cmd /c dir` will execute a dir from command prompt in the current directory. This can also be used to execute any other program. 
 
 ## Client
