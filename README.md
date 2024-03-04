@@ -18,8 +18,8 @@ To compile the server run the included `compile.bat` script
 - Any other commands sent will be executed by a pipe. IE: sending `cmd /c dir` will execute a dir from command prompt in the current directory. This can also be used to execute any other program. 
 
 ## Client
-Client take commands from the C2 and performs actions. Different functions are contained in modules that are imported and more can be easily added to the client. The client will make itself persistent on the 
-victim machine via a registry key.
+Client receives commands from the C2 and performs actions. Different functions are contained in modules that are imported and more can be easily added to the client. The client will make itself persistent on the 
+victim machine via a windows registry key.
 
 ### Compiling
 To compile the client run the included `compile.bat` script
