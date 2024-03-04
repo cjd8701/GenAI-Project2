@@ -3,7 +3,7 @@
 Produce a piece of software that is useful within the cybersecurity context. Leverage generative AI, showcase the ability and limitations of current tools.
 
 ## Overview 
-This is a C2 server and persistent client that can execute several commands on the victim machine.
+This is a C2 server and persistent client that can execute several commands on the victim Windows machine.
 
 ## C2 Server
 The server listens for connections from the client. It will then send commands for the client to execute and receive responses from the client. 
