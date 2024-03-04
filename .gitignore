@@ -5,3 +5,4 @@ server/Server.exe
 client/client.exe
 .vscode/settings.json
 client/persistence.o
+client/cleanup.o
