@@ -11,7 +11,7 @@ The server listens for connections from the client. It will then send commands f
 ### Compiling
 To compile the server run the included `compile.bat` script
 
-### Commands (case sensative)
+### Commands (case sensitive)
 - hello: Test command, client will return "world"
 - keylog: Client will log keypresses for thirty seconds and return them to the server
 - cleanup: Client will delete itself and cover up its existence. Registry key will be deleted and the process will delete the exe and close itself.
